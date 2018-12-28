@@ -18,23 +18,17 @@ import io.reactivex.*
 import io.reactivex.annotations.NonNull
 import java.util.ArrayList
 
-class SimpleRxDialog {
+class SimpleRxDialog(private var context: Context){
     val POSITIVE = -1
     val NEGATIVE = -2
     val NEUTRAL = -3
 
-    private lateinit var builder: AlertDialog.Builder
+    private var builder: AlertDialog.Builder = AlertDialog.Builder(context)
     private var positiveText: String? = null
     private var negativeText: String? = null
     private var neutralText: String? = null
-    private lateinit var context: Context
     private var view: View? = null
     private val idList = ArrayList<Int>()
-
-    fun SimpleRxDialog(mActivity: Context) {
-        this.context = mActivity
-        builder = AlertDialog.Builder(mActivity)
-    }
 
     fun setPositiveText(@StringRes textId: Int): SimpleRxDialog {
         val text = context.getString(textId)
